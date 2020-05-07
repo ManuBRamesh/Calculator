@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Calculator</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container-fluid">
+    <div class="row">
+    <div class="border border-dark col-sm-6 col-md-6 col-lg-6 align-items-center">
+    <b><h1>Calculator</h1></b><br><hr><br>
+    <form action="/operation" method="post">
+        
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label for="numb1">Numb 1</label>
+                <input type="number" class="form-control" id="numb1" name="numb1" required min="1" max="99999">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="ops">Ops</label>
+                <select id="ops" name="ops" class="form-control">
+                    <option selected value="add">Add</option>
+                    <option value="sub">Sub</option>
+                    <option value="div">Div</option>
+                    <option value="mul">Mul</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="numb2">Numb 2</label>
+                <input type="number" name="numb2" class="form-control" id="numb2" required min="1" max="99999">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button> <hr><br><br>
+        <h1>Results :   {{ numb1 }}   {{ ops }}  {{ numb2 }}  = {{ data }}</h1>
+    </form>
+    </div>
+
+    <div class="col-sm-6 col-md-6 col-lg-6">
+        <b><h1 class="text-center">History</h1></b><br><br>
+        <div class="container">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Sl.No</th>
+                  <th>Results</th>
+                  <th>Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>2 * 2 = 4</td>
+                  <td>12:00:00 01/01/2020</td>
+                </tr>      
+              </tbody>
+            </table>
+          </div>
+          
+
+    </div>
+    </div>
+</div> 
+</body>
+</html>
+
