@@ -4,9 +4,9 @@
   <title>Calculator</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet" type="text/css"/>
+  <script src="{{ url_for('static', filename='js/jquery.js')}}" ></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.js')}}"></script>
 </head>
 
 <body>
@@ -14,8 +14,7 @@
     <div class="row">
     <div class="border border-dark col-sm-6 col-md-6 col-lg-6 align-items-center">
     <b><h1>Calculator</h1></b><br><hr><br>
-    <form action="/operation" method="post">
-        
+    <form action="/" method="post">
         <div class="form-row">
             <div class="form-group col-md-2">
                 <label for="numb1">Numb 1</label>
@@ -35,9 +34,8 @@
                 <input type="number" name="numb2" class="form-control" id="numb2" required min="1" max="99999">
             </div>
         </div>
-
         <button type="submit" class="btn btn-primary">Submit</button> <hr><br><br>
-        <h1>Results :   {{ numb1 }}   {{ ops }}  {{ numb2 }}  = {{ data }}</h1>
+        <h1>Results : </h1><h1 style="color: rgb(82, 63, 63);">{{ results }}</h1>
     </form>
     </div>
 
@@ -50,19 +48,27 @@
                   <th>Sl.No</th>
                   <th>Results</th>
                   <th>Time</th>
+                  <th>Action</th>
                 </tr>
               </thead>
+              {% if history|length < 1 %}
+              <h4 style="text-align: center">There are no Results. Perform one Operation on the left side!</h4>
+              {% else %}
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>2 * 2 = 4</td>
-                  <td>12:00:00 01/01/2020</td>
-                </tr>      
+                <tr>            
+                  {% for rows in history %}
+                  <tr>
+                  <td>{{ rows.id }}</td>
+                  <td>{{ rows.result }}</td>
+                  <td>{{ rows.date_created.date() }}</td>
+                  <td><a href="/delete/{{rows.id}}">Delete</a></td>
+                  </tr>
+                  {% endfor %}
+
               </tbody>
+              {% endif %}
             </table>
           </div>
-          
-
     </div>
     </div>
 </div> 

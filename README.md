@@ -12,4 +12,6 @@ virtualenv env -p python3
 
 source env/bin/activate
 
-pip install -r requirements.tx
+pip install -r requirements.txt
+
+flask_sqlalchemy
